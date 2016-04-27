@@ -7,6 +7,15 @@ $items = $stmt->fetchAll(PDO::FETCH_ASSOC);
 } catch(PDOexception $e){
 	echo $e->getMessage();
 }
+
+
+if(isset($_GET['deletePost'])){ 
+    $stmt = $db->prepare('DELETE FROM blog_tbl WHERE id = :id') ;
+    $stmt->execute(array(':id' => $_GET['deletePost']));
+
+    header('Location: index.php?action=deleted');
+    exit;
+} 
 ?>
 <?php include('../header.php'); ?>
     <main>
@@ -15,6 +24,7 @@ $items = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <thead>
                 <tr>
                     <th>Title</th>
+                    <th>Content</th>
                     <th>Author</th>
                     <th>Date</th>
                     <th>Edit</th>
@@ -25,10 +35,12 @@ $items = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <?php foreach($items as $item){ ?>
                 <tr>
                     <td><?php echo $item['title']; ?></td>
+                    <?php $content = $item['content']; ?>
+                    <td><?php echo substr($content, 0, 30); ?></td>
                     <td><?php echo $item['author']; ?></td>
                     <td><?php echo $item['published_date']; ?></td>
-                    <td><a href="editPost.php">Edit</a></td>
-                    <td><a href="deletePost.php">Delete</a></td>
+                    <td><a href="editPost.php?id=<?php echo $item['id'];?>">Edit</a></td>
+                    <td><a href="javascript:deletePost('<?php echo $item['id']; ?>')">Delete</a></td>
                 </tr>
                 <?php } ?>
             </tbody>

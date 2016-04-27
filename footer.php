@@ -1,6 +1,6 @@
     <footer>
         <p>Copyright</p>
     </footer>
-    <script src="scripts.js"></script>
+    <script src="/blogg/scripts.js"></script>
 </body>
 </html>

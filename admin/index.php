@@ -3,7 +3,7 @@ require("../inc/db_connect.php");
 
 try{
 $stmt = $db->query("SELECT * FROM blog_tbl;");
-$items = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
 } catch(PDOexception $e){
 	echo $e->getMessage();
 }
@@ -32,15 +32,15 @@ if(isset($_GET['deletePost'])){
                 </tr>
             </thead>
             <tbody>
-                <?php foreach($items as $item){ ?>
+                <?php foreach($rows as $row){ ?>
                 <tr>
-                    <td><?php echo $item['title']; ?></td>
-                    <?php $content = $item['content']; ?>
-                    <td><?php echo substr($content, 0, 30); ?></td>
-                    <td><?php echo $item['author']; ?></td>
-                    <td><?php echo $item['published_date']; ?></td>
-                    <td><a href="editPost.php?id=<?php echo $item['id'];?>">Edit</a></td>
-                    <td><a href="javascript:deletePost('<?php echo $item['id']; ?>')">Delete</a></td>
+                    <td><?php echo $row['title']; ?></td>
+                    <?php $content = $row['content']; ?>
+                    <td><?php echo htmlspecialchars(substr($content, 0, 30)); ?></td>
+                    <td><?php echo $row['author']; ?></td>
+                    <td><?php echo $row['published_date']; ?></td>
+                    <td><a href="editPost.php?id=<?php echo $row['id'];?>">Edit</a></td>
+                    <td><a href="javascript:deletePost('<?php echo $row['id']; ?>')">Delete</a></td>
                 </tr>
                 <?php } ?>
             </tbody>

@@ -3,22 +3,22 @@ require("/inc/db_connect.php");
 
 try{
 $stmt = $db->query("SELECT * FROM blog_tbl;");
-$items = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
 } catch(PDOexception $e){
 	echo $e->getMessage();
 }
 ?>
 
-<?php foreach($items as $item){ ?>
-<article id="article-<?php echo $item['id']; ?>">
+<?php foreach($rows as $row){ ?>
+<article id="article-<?php echo $row['id']; ?>">
 <header>
-    <h1><?php echo $item['title']; ?></h1>
+    <h1><?php echo $row['title']; ?></h1>
 </header>
 <div>
-    <?php echo $item['content']; ?>
+    <?php echo $row['content']; ?>
 </div>
 <footer>
-    By <?php echo $item['author']; ?> | <?php echo $item['published_date']; ?>
+    By <?php echo $row['author']; ?> | <?php echo $row['published_date']; ?>
 </footer>
 </article>
 <?php } ?>

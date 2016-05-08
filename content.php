@@ -9,7 +9,7 @@ $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 ?>
 
-<?php foreach($rows as $row){ ?>
+<?php foreach(array_reverse($rows) as $row){ ?>
 <article id="article-<?php echo $row['id']; ?>">
 <header>
     <h1><?php echo $row['title']; ?></h1>

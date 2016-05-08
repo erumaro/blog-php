@@ -19,6 +19,10 @@ if(isset($_GET['deletePost'])){
 ?>
 <?php include('../header.php'); ?>
     <main>
+		<?php $status = $_GET['status'];
+		if($status){ ?>
+			<p class="msg-success">Nytt inlägg har skapats!</p>
+		<?php } ?>
         <h1>Inlägg <a href="createPost.php">Skapa nytt</a></h1>
         <table>
             <thead>
@@ -32,7 +36,7 @@ if(isset($_GET['deletePost'])){
                 </tr>
             </thead>
             <tbody>
-                <?php foreach($rows as $row){ ?>
+                <?php foreach(array_reverse($rows) as $row){ ?>
                 <tr>
                     <td><?php echo $row['title']; ?></td>
                     <?php $content = $row['content']; ?>

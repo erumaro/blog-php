@@ -19,8 +19,8 @@ if(isset($_GET['deletePost'])){
 ?>
 <?php include('../header.php'); ?>
     <main>
-		<?php $status = $_GET['status'];
-		if($status){ ?>
+		<?php if(isset($_GET['status'])){ $status = $_GET['status']; };
+		if(isset($status)){ ?>
 			<p class="msg-success">Nytt inlägg har skapats!</p>
 		<?php } ?>
         <h1>Inlägg <a href="createPost.php">Skapa nytt</a></h1>

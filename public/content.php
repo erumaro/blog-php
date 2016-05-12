@@ -1,5 +1,5 @@
 <?php
-require("/inc/db_connect.php");
+require("../inc/db_connect.php");
 
 try{
 $stmt = $db->query("SELECT * FROM blog_tbl;");

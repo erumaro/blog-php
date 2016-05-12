@@ -1,5 +1,5 @@
 <?php
-require("../inc/db_connect.php");
+require("../../inc/db_connect.php");
 
 try{
 $stmt = $db->query("SELECT * FROM blog_tbl;");
@@ -19,10 +19,13 @@ if(isset($_GET['deletePost'])){
 ?>
 <?php include('../header.php'); ?>
     <main>
-		<?php if(isset($_GET['status'])){ $status = $_GET['status']; };
-		if(isset($status)){ ?>
+		<?php 
+        if(isset($_GET['status'])){ $status = $_GET['status']; };
+		  if(isset($status)){ ?>
 			<p class="msg-success">Nytt inlägg har skapats!</p>
-		<?php } ?>
+		<?php } else if(isset($_GET['action'])){ ?>
+            <p class="msg-deleted">Inlägg borttaget!</p>
+        <?php } ?>
         <h1>Inlägg <a href="createPost.php">Skapa nytt</a></h1>
         <table>
             <thead>

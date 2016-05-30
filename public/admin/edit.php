@@ -13,7 +13,7 @@ if(isset($_POST)){
     $ed_title = test_input($_POST["title"]);
     $ed_content = test_input($_POST["content"]);
     $ed_author = test_input($_POST["author"]);
-    if(!empty($title) && !empty($content) && !empty($author)){
+    if(!empty($ed_title) && !empty($ed_content) && !empty($ed_author)){
         $stmt = $db->prepare("
 			UPDATE blog_tbl
 			SET title = :title,

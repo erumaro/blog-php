@@ -47,7 +47,7 @@ if(isset($_GET['deletePost'])){
                     <td><?php echo $row['author']; ?></td>
                     <td><?php echo $row['published_date']; ?></td>
                     <td><a href="editPost.php?id=<?php echo $row['id'];?>">Edit</a></td>
-                    <td><a href="javascript:deletePost('<?php echo $row['id']; ?>')">Delete</a></td>
+                    <td><a href="#" onclick="deletePost('<?php echo $row['id']; ?>')">Delete</a></td>
                 </tr>
                 <?php } ?>
             </tbody>
